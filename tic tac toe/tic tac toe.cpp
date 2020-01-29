@@ -6,7 +6,7 @@
 using namespace std;
 
 char board[3][3]; // 2d aray used for board
-char input; // used to store character typed on nupad
+int input; // used to store character typed on nupad
 bool gameover; // used to end while loop
 char player = 'X'; // player is used for multiple things it is used to know whose turn it is. It is also used to make sure the right leter is placed and if the player wins with the leter they placed.
 bool validinput; // used to see if input is valid and to know when to switch whose turn it is
@@ -37,6 +37,7 @@ void start()
 //used to display the game
 void displayboard()
 {
+	system("cls");
 	for (int x = 0; x < 3; x++)
 	{
 		for (int y = 0; y < 3; y++)
@@ -93,16 +94,16 @@ void checkwin()
 		gameover = true;
 		cout << "player " << player << " wins!";
 	}
-	else if (board[0][0] != ' ' & board[0][1] != ' ' & board[0][2] != ' ' & board[1][0] != ' ' & board[1][1] != ' '
-		& board[1][2] != ' ' & board[2][0] != ' ' & board[2][1] != ' ' & board[2][2] != ' ') // checks to if game is imposible to win
+	if (board[0][0] != ' ' & board[0][1] != ' ' & board[0][2] != ' ' & board[1][0] != ' ' & board[1][1] != ' '
+		& board[1][2] != ' ' & board[2][0] != ' ' & board[2][1] != ' ' & board[2][2] != ' ' & !gameover) // checks to if game is imposible to win
 	{
-		gameover == true;
+		gameover = true;
 		cout << "Nobody wins.";
 	}
 	if (gameover == true)
 	{
-		cout << "Press 'enter' to contiue.";
-		cin.get();
+		cout << endl;
+		system("pause");
 	}
 }
 
@@ -114,9 +115,10 @@ int main()
 	system("cls");
 	start();
 	cin.clear();
+	displayboard();
 	while (!gameover)
 	{
-
+		
 		if (validinput == true & player == 'X') //used to make sure there is valid input before making it o's turn
 		{
 			player = 'O';
@@ -127,70 +129,71 @@ int main()
 			player = 'X';
 			validinput = false;
 		}
-		displayboard();
+		
+		
 		cout << "Player" << player << "'s turn.";
 		cout << "use the numpad to pick where to put the" << player << endl;
 		// player x's turn;
 		cin >> input;
 		switch (input) // used to put  a x or a o depending on which key the player picks on the numpad
 		{
-		case '1':
+		case 1:
 			if (board[2][0] == ' ') // all of the if statments are used to make sure you cant place a leter where there is already a letter. It also keeps the turn from switching.
 			{
 				board[2][0] = player;
 				validinput = true;
 			}
 			break;
-		case '2':
+		case 2:
 			if (board[2][1] == ' ')
 			{
 				board[2][1] = player;
 				validinput = true;
 			}
 			break;
-		case '3':
+		case 3:
 			if (board[2][2] == ' ')
 			{
 				board[2][2] = player;
 				validinput = true;
 			}
 			break;
-		case '4':
+		case 4:
 			if (board[1][0] == ' ')
 			{
 				board[1][0] = player;
 				validinput = true;
 			}
 			break;
-		case '5':
+		case 5:
 			if (board[1][1] == ' ')
 			{
 				board[1][1] = player;
 				validinput = true;
 			}
 			break;
-		case '6':
+		case 6:
 			if (board[1][2] == ' ')
 			{
 				board[1][2] = player;
 				validinput = true;
 			}
 			break;
-		case '7':
+		case 7:
 			if (board[0][0] == ' ')
 			{
 				board[0][0] = player;
 				validinput = true;
 			}
 			break;
-		case '8':
+		case 8:
 			if (board[0][1] == ' ')
 			{
 				board[0][1] = player;
 				validinput = true;
 			}
 			break;
-		case '9':
+		case 9:
 			if (board[0][2] == ' ')
 			{
 				board[0][2] = player;
@@ -200,10 +203,10 @@ int main()
 		default:
 			validinput = false;
 		}
-		input = ' ';
+		
+		displayboard();
+		
 		checkwin();
-		system("cls");
-
 	}
 
 }
