@@ -96,7 +96,7 @@ void checkwin()
 
 int main()
 {
-	cout << "welcome to tic tac toe" << endl << "player turns will be show by if the console says player x or player y's turn" << endl << endl;
+	cout << "Welcome to tic tac toe" << endl << "player turns will be show by if the console says player x or player y's turn" << endl << endl;
 	cout << "Press 'Enter' to contiue.";
 	cin.clear();
 	cin.ignore(cin.rdbuf()->in_avail());
@@ -121,7 +121,7 @@ int main()
 		
 		
 		cout << "Player" << player << "'s turn.";
-		cout << "use the numpad to pick where to put the" << player << endl;
+		cout << "use the numpad to pick where to put the " << player << endl;
 		cin.clear();
 		cin.ignore(cin.rdbuf()->in_avail());
 		cin >> input;
