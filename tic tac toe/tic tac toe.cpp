@@ -5,29 +5,14 @@
 
 using namespace std;
 
-char board[3][3]; // 2d aray used for board
+char board[3][3]; // used to store characters in the board
 int input; // used to store character typed on numpad
-bool gameover; // used to end while loop
+bool gameover;
 char player = 'X'; // player is used for multiple things it is used to know whose turn it is.
 //It is also used to make sure the right leter is placed and if the player wins with the letter they placed.
 bool validinput; // used to see if input is valid and to know when to switch whose turn it is
-void start()
+void start() //sets all spaces on the board to blank characters
 {
-	
-	/*
-	positions for numkeys where they place letter on array.
-	This was used to help me with making the win conditions.
-	1 = 2 0
-	2 = 2 1
-	3 = 2 2
-	4 = 1 0
-	5 = 1 1
-	6 = 1 2
-	7 = 0 0
-	8 = 0 1
-	9 = 0 2
-
-	*/
 	for (int x = 0; x < 3; x++)
 	{
 		for (int y = 0; y < 3; y++)
@@ -55,7 +40,7 @@ void displayboard()
 //used to check if a player won
 void checkwin()
 {
-	//uses player so it only checks for win with the letter of the player who just did there turn
+	
 	if (board[2][0] == player & board[2][1] == player & board[2][2] == player) // checks if matching leters on on the bottom row
 	{
 		gameover = true;
@@ -81,17 +66,17 @@ void checkwin()
 		gameover = true;
 		cout << "player " << player << " wins!";
 	}
-	if (board[0][2] == player & board[1][2] == player & board[2][2] == player)
+	if (board[0][2] == player & board[1][2] == player & board[2][2] == player) //used to check right column
 	{
 		gameover = true;
 		cout << "player " << player << " wins!";
 	}
-	if (board[0][0] == player & board[1][1] == player & board[2][2] == player)
+	if (board[0][0] == player & board[1][1] == player & board[2][2] == player) 
 	{
 		gameover = true;
 		cout << "player " << player << " wins!";
 	}
-	if (board[0][2] == player & board[1][1] == player & board[2][0] == player)
+	if (board[0][2] == player & board[1][1] == player & board[2][0] == player) 
 	{
 		gameover = true;
 		cout << "player " << player << " wins!";
@@ -102,7 +87,7 @@ void checkwin()
 		gameover = true;
 		cout << "Nobody wins.";
 	}
-	if (gameover == true)
+	if (gameover == true) 
 	{
 		cout << endl;
 		system("pause");
@@ -111,7 +96,7 @@ void checkwin()
 
 int main()
 {
-	cout << "welcome to tic tac toe" << endl << "player turns will be show by if the console says player x or player y's turn" << endl << endl;
+	cout << "Welcome to tic tac toe" << endl << "player turns will be show by if the console says player x or player y's turn" << endl << endl;
 	cout << "Press 'Enter' to contiue.";
 	cin.clear();
 	cin.ignore(cin.rdbuf()->in_avail());
@@ -136,8 +121,7 @@ int main()
 		
 		
 		cout << "Player" << player << "'s turn.";
-		cout << "use the numpad to pick where to put the" << player << endl;
-		// player x's turn;
+		cout << "use the numpad to pick where to put the " << player << endl;
 		cin.clear();
 		cin.ignore(cin.rdbuf()->in_avail());
 		cin >> input;
@@ -146,10 +130,10 @@ int main()
 			cin.clear();
 			cin.ignore();
 		}
-		switch (input) // used to put  a x or a o depending on which key the player picks on the numpad
+		switch (input) //puts player token if space is blank.
 		{
 		case 1:
-			if (board[2][0] == ' ') // all of the if statments are used to make sure you cant place a leter where there is already a letter. It also keeps the turn from switching.
+			if (board[2][0] == ' ') 
 			{
 				board[2][0] = player;
 				validinput = true;
